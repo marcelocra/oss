@@ -219,6 +219,9 @@ catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme slate
 endtry
 
+" Set ruler - TODO: adapt for different filetypes
+set colorcolumn=80
+
 "autocmd BufNewFile,BufRead *.ejs set filetype=html
 "set term=xterm-256color
 
@@ -368,6 +371,10 @@ endfunction
 " ############################
 " ##### general mappings #####
 " ############################
+
+" Use normal regex
+nnoremap / /\v
+vnoremap / /\v
 
 " execute macro saved in register q with space
 nnoremap <Space> @q
