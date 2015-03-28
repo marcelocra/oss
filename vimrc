@@ -18,8 +18,7 @@ endif
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
-let g:vundlefolder = g:myvimfolder . '/bundle/Vundle.vim'
-set rtp+=g:vundlefolder
+let &rtp.=','.expand(g:myvimfolder . '/bundle/Vundle.vim')
 
 " Plugins go after this line
 call vundle#begin(g:myvimfolder . "/bundle")
