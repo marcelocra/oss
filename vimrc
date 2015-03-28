@@ -2,60 +2,75 @@
 " ##### VUNDLE REQUIRED! #####
 " ############################
 
+" Find where is your Vim folder.
+if $HOME == fnamemodify($MYVIMRC, ':h')
+    if isdirectory($HOME . '/.vim')
+        let g:myvimfolder = expand($HOME . '/.vim')
+    elseif isdirectory($HOME . '/vimfiles')
+        let g:myvimfolder = expand($HOME . '/vimfiles')
+    else
+        echom "Vim default directories are not present in your computer. Create either a ~/.vim (unix) or a ~/vimfiles (win) before trying again."
+        exit
+    endif
+else
+    let g:myvimfolder = expand(fnamemodify($MYVIMRC, ':h'))
+endif
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
-set rtp+=~/.vim/bundle/Vundle.vim,~/vimfiles/bundle/Vundle.vim
+let g:vundlefolder = g:myvimfolder . '/bundle/Vundle.vim'
+set rtp+=g:vundlefolder
 
 " Plugins go after this line
-call vundle#begin(expand(fnamemodify($MYVIMRC, ':h') . "/bundle/"))
+call vundle#begin(g:myvimfolder . "/bundle")
 
 " The plugin manager - should always be here
 Plugin 'gmarik/Vundle.vim'
 
 " --- Colorschemes ---
 
-Plugin 'sjl/badwolf'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
-Plugin 'endel/vim-github-colorscheme'
-Plugin 'goatslacker/mango.vim'
-Plugin 'marcus/vim-mustang'
-Plugin 'tpope/vim-vividchalk'
+"Plugin 'altercation/vim-colors-solarized'
 "Plugin 'chriskempson/base16-vim'
-"Plugin 'jpo/vim-railscasts-theme'
+"Plugin 'endel/vim-github-colorscheme'
 "Plugin 'flazz/vim-colorschemes'
+"Plugin 'goatslacker/mango.vim'
+"Plugin 'jpo/vim-railscasts-theme'
+"Plugin 'marcus/vim-mustang'
+"Plugin 'sjl/badwolf'
+"Plugin 'tpope/vim-vividchalk'
 
 " --- General plugins ---
 
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'Raimondi/delimitMate'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
 Plugin 'ervandew/supertab'
-Plugin 'honza/vim-snippets'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mhinz/vim-startify'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+"Plugin 'airblade/vim-gitgutter'
 "Plugin 'benmills/vimux'
-"Plugin 'vim-scripts/CSApprox'
+"Plugin 'bling/vim-airline'
+"Plugin 'honza/vim-snippets'
+"Plugin 'kien/ctrlp.vim'
+"Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'mhinz/vim-startify'
+"Plugin 'Raimondi/delimitMate'
 "Plugin 'rking/ag.vim'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'terryma/vim-multiple-cursors'
+"Plugin 'tpope/vim-surround'
+"Plugin 'vim-scripts/CSApprox'
 "Plugin 'Yggdroot/indentLine'
-if has('python')
-    Plugin 'SirVer/ultisnips'
-endif
-if has('unix')
-    Plugin 'Valloric/YouCompleteMe'
-endif
+"if has('python')
+    "Plugin 'SirVer/ultisnips'
+"endif
+"if has('unix')
+    "Plugin 'Valloric/YouCompleteMe'
+"endif
 
 " --- Language or framework specific plugins ---
 
-Plugin 'mattn/emmet-vim'
+"Plugin 'mattn/emmet-vim'
 "Plugin 'derekwyatt/vim-scala'
 "Plugin 'wlangstroth/vim-racket'
 "Plugin 'Slava/tern-meteor'
@@ -63,10 +78,10 @@ Plugin 'mattn/emmet-vim'
 
 " + Javascript
 
-Plugin 'moll/vim-node'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'pangloss/vim-javascript'
-Plugin 'digitaltoad/vim-jade'
+"Plugin 'moll/vim-node'
+"Plugin 'kchmck/vim-coffee-script'
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'digitaltoad/vim-jade'
 "Plugin 'jelera/vim-javascript-syntax'
 "Plugin 'mustache/vim-mustache-handlebars'
 
@@ -76,8 +91,8 @@ Plugin 'digitaltoad/vim-jade'
 
 " + Clojure
 
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-leiningen'
+"Plugin 'tpope/vim-fireplace'
+"Plugin 'tpope/vim-leiningen'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -204,23 +219,23 @@ set splitright
 " Set line endings. Prefer Unix, but also accept DOS
 set fileformats=unix,dos
 
-" Set proper colors for gnome-terminal
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
+" Set proper colors
+set t_Co=256
 
 " Avoid folding
 set nofoldenable
 
-set background=dark
 try
-    colorscheme github
+    colorscheme molokai
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme slate
 endtry
 
 " Set ruler - TODO: adapt for different filetypes
-set colorcolumn=80
+"set colorcolumn=80
+
+" Set how the status line will be shown in the bottom of Vim
+set statusline=%<%F\ %m%r%h\ %{fugitive#statusline()}%=lines:%l/%L\ col:%c%V
 
 "autocmd BufNewFile,BufRead *.ejs set filetype=html
 "set term=xterm-256color
@@ -229,7 +244,7 @@ set colorcolumn=80
 " ##### backup file settings #####
 " ################################
 
-let g:vimtempfolder = expand(fnamemodify($MYVIMRC, ':h') . "/tmp")
+let g:vimtempfolder = g:myvimfolder . "/tmp"
 
 " Test if a backup directory exists and if not, create one
 if !isdirectory(g:vimtempfolder)
