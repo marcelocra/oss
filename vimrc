@@ -236,6 +236,8 @@ endtry
 " Set how the status line will be shown in the bottom of Vim
 set statusline=%<%F\ %m%r%h\ %{fugitive#statusline()}%=lines:%l/%L\ col:%c%V
 
+set guicursor+=i:ver10-iCursor
+
 "autocmd BufNewFile,BufRead *.ejs set filetype=html
 "set term=xterm-256color
 
@@ -281,11 +283,15 @@ else
     let s:uname = system("uname -s")
     if s:uname == "Darwin"
         " Do Mac stuff here
+        if has('gui_running')
+            set guifont=Menlo\ Regular:h10
+        endif
+        set clipboard=unnamed
     else
         " Do Linux stuff here
         if has('gui_running')
             " Set font according to the list (if one is not present, try the next)
-            set guifont=DejaVu\ Sans\ Mono\ 12,Consolas\ 12,Monospace\ 12
+            set guifont=DejaVu\ Sans\ Mono\ 10,Consolas\ 12,Monospace\ 12
         endif
         " Yank to clipboard
         set clipboard=unnamedplus
