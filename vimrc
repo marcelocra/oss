@@ -63,9 +63,9 @@ Plugin 'tpope/vim-unimpaired'
 "if has('python')
     "Plugin 'SirVer/ultisnips'
 "endif
-"if has('unix')
-    "Plugin 'Valloric/YouCompleteMe'
-"endif
+if has('unix')
+    Plugin 'Valloric/YouCompleteMe'
+endif
 
 " --- Language or framework specific plugins ---
 
