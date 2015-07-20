@@ -1,4 +1,6 @@
 bundle/
 tmp/
+eclim/
+plugin/
 .netrwhist
 UltiSnips/
