@@ -127,8 +127,8 @@ Plugin 'rust-lang/rust.vim'
 
 " + Clojure
 
-"Plugin 'tpope/vim-fireplace'
-"Plugin 'tpope/vim-leiningen'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-leiningen'
 
 " All of your Plugins must be added before the following line.
 call vundle#end()            " required
@@ -247,7 +247,7 @@ try
     if has('gui_running')
         colorscheme solarized
     else
-        colorscheme molokai
+        colorscheme mustang
     endif
     set background=dark
 catch /^Vim\%((\a\+)\)\=:E185/
@@ -264,7 +264,7 @@ set statusline=%<%F\ %m%r%h\ %{fugitive#statusline()}%=lines:%l/%L\ col:%c%V
 
 set guicursor=n-v-c:block-Cursor-blinkon0
 set guicursor+=ve:ver35-Cursor
-set guicursor+=o:hor50-Cursor
+set guicursor+=o:hor30-Cursor
 set guicursor+=i-ci:ver10-Cursor
 set guicursor+=r-cr:hor10-Cursor
 set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
