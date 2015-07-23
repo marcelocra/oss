@@ -139,7 +139,7 @@ filetype plugin indent on    " required
 " ##### functions #####
 " #####################
 
-" Convert current file from DOS format to UNIX format.
+" Converts current file from DOS format to UNIX format.
 function! ConvertDosFileToUnix ()
     :update
     :e ++ff=dos
@@ -147,14 +147,12 @@ function! ConvertDosFileToUnix ()
     :w
 endfunction
 
-" Remove trailing spaces without moving the cursor from current
-" place.
+" Removes trailing spaces without moving the cursor from current place.
 function! RemoveTrailingSpaces ()
     call CommandToExecuteWithoutMovingCursor(":%s/\\s\\+$//e")
 endfunction
 
-" Function that allow other functions to be executed without
-" changing the cursor position.
+" Allows other functions to be executed without changing the cursor position.
 function! CommandToExecuteWithoutMovingCursor(command)
     let cp=getpos('.')
     exec a:command
@@ -165,6 +163,28 @@ endfunction
 function! IndentCurrentFile()
     call CommandToExecuteWithoutMovingCursor("normal gg=G\<CR>")
     exec "normal zz"
+endfunction
+
+" Detects if it is dark already.
+function! IsDark()
+python << endpython
+from datetime import datetime as dt
+from datetime import date
+from datetime import time
+from datetime import timedelta
+import vim
+
+present = dt.now()
+today = date.today()
+evening_time = time(19, 00)
+morning_time = time(6, 00)
+evening = dt.combine(today, evening_time)
+morning = dt.combine(today + timedelta(days=1), morning_time)
+if (present > evening) and (present < morning) :
+    vim.command("return 1")
+else:
+    vim.command("return 0")
+endpython
 endfunction
 
 " ############################
@@ -246,10 +266,14 @@ set nofoldenable
 try
     if has('gui_running')
         colorscheme solarized
+        if IsDark()
+            set background=light
+        else
+            set background=dark
+        endif
     else
         colorscheme mustang
     endif
-    set background=dark
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
     set background=dark
