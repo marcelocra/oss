@@ -265,11 +265,12 @@ set nofoldenable
 
 try
     if has('gui_running')
-        colorscheme solarized
         if IsDark()
-            set background=light
-        else
+            colorscheme molokai
             set background=dark
+        else
+            colorscheme github
+            set background=light
         endif
     else
         colorscheme mustang
