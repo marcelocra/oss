@@ -389,6 +389,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 let g:ycm_error_symbol = 'EE'
 let g:EclimCompletionMethod = 'omnifunc'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 " Causes YCM to avoid asking if it should load the .ycm_extra_conf.py.
 let g:ycm_confirm_extra_conf = 0
