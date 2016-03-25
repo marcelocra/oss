@@ -348,7 +348,7 @@ else
         if has('gui_running')
             " Set font according to the list (if one is not present, the next
             " one is used).
-            set guifont=Roboto\ Mono\ 10,Consolas\ 10,Monospace\ 10
+            set guifont=Meslo\ LG\ M\ 10,Roboto\ Mono\ 10,Consolas\ 10,Monospace\ 10
         endif
         " Yank to clipboard
         set clipboard=unnamedplus
