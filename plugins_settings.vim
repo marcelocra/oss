@@ -82,7 +82,7 @@ endif
 
 if has('unix')
     " Provides an awesome autocomplete for Vim.
-    Plugin 'Valloric/YouCompleteMe'
+    "Plugin 'Valloric/YouCompleteMe'
 endif
 
 " --- Language or framework specific plugins ---
@@ -112,8 +112,8 @@ Plugin 'rust-lang/rust.vim'
 
 " + Clojure
 
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-leiningen'
+"Plugin 'tpope/vim-fireplace'
+"Plugin 'tpope/vim-leiningen'
 
 " All of your Plugins must be added before the following line.
 call vundle#end()            " required

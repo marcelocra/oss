@@ -52,6 +52,10 @@ nnoremap <silent> <Leader>O :let cp=getpos('.')<CR>O<Esc>j:call cursor(cp[1] + 1
 nnoremap <Leader><Leader>sv :source $MYVIMRC<CR>
 " Easily edit my vimrc.
 nnoremap <Leader><Leader>ev :tabe $MYVIMRC<CR>
+nnoremap <Leader><Leader>vm :tabe ~/.vim/mappings.vim<CR>
+nnoremap <Leader><Leader>vf :tabe ~/.vim/functions.vim<CR>
+nnoremap <Leader><Leader>vs :tabe ~/.vim/settings.vim<CR>
+nnoremap <Leader><Leader>vp :tabe ~/.vim/plugins_settings.vim<CR>
 
 " Clear last search.
 nnoremap <silent> <Leader><Leader>e :let @/ = ""<CR>

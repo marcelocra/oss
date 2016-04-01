@@ -96,7 +96,7 @@ endtry
 set colorcolumn=79
 
 " Set how the status line will be shown in the bottom of Vim.
-set statusline=%<%F\ %m%r%h\ %{fugitive#statusline()}%=lines:%l/%L\ col:%c%V
+set statusline=%<%F\ %m%r%h\ %=lines:%l/%L\ col:%c%V
 
 set guicursor=n-v-c:block-Cursor-blinkon0
 set guicursor+=ve:ver35-Cursor
