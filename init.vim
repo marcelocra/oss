@@ -2,7 +2,7 @@
 " Vim Plug.
 " ---------
 
-call plug#begin(stdpath('data') . '/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Colorschemes.
 Plug 'altercation/vim-colors-solarized'
@@ -23,7 +23,7 @@ Plug 'tpope/vim-unimpaired'
 "Plug 'bling/vim-airline'
 
 " Provides fuzzy search for files in current directory|buffer|MRU.
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Allows one to easily traverse files.
 Plug 'Lokaltog/vim-easymotion'
@@ -36,58 +36,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Initialize plugin system
 call plug#end()
-
-" #####################
-" ##### functions #####
-" #####################
-
-" Converts current file from DOS format to UNIX format.
-function! ConvertDosFileToUnix ()
-    :update
-    :e ++ff=dos
-    :setlocal ff=unix
-    :w
-endfunction
-
-" Removes trailing spaces without moving the cursor from current place.
-function! RemoveTrailingSpaces ()
-    call CommandToExecuteWithoutMovingCursor(":%s/\\s\\+$//e")
-endfunction
-
-" Allows other functions to be executed without changing the cursor position.
-function! CommandToExecuteWithoutMovingCursor(command)
-    let cp=getpos('.')
-    exec a:command
-    call cursor(cp[1],cp[2])
-endfunction
-
-" Indent file without moving cursor.
-function! IndentCurrentFile()
-    call CommandToExecuteWithoutMovingCursor("normal gg=G\<CR>")
-    exec "normal zz"
-endfunction
-
-" Detects if it is dark already.
-function! IsDark()
-python << endpython
-from datetime import datetime as dt
-from datetime import date
-from datetime import time
-from datetime import timedelta
-import vim
-
-present = dt.now()
-today = date.today()
-evening_time = time(19, 00)
-morning_time = time(6, 00)
-evening = dt.combine(today, evening_time)
-morning = dt.combine(today + timedelta(days=1), morning_time)
-if (present > evening) and (present < morning) :
-    vim.command("return 1")
-else:
-    vim.command("return 0")
-endpython
-endfunction
 
 " ############################
 " ##### general settings #####
@@ -167,13 +115,8 @@ set nofoldenable
 
 try
     if has('gui_running')
-        if IsDark()
-            colorscheme molokai
-            set background=dark
-        else
-            colorscheme github
-            set background=light
-        endif
+        colorscheme molokai
+        set background=dark
     else
         colorscheme mustang
     endif
@@ -198,32 +141,6 @@ set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
 "autocmd BufNewFile,BufRead *.ejs set filetype=html
 "set term=xterm-256color
-
-" ################################
-" ##### backup file settings #####
-" ################################
-
-let g:vimtempfolder = expand($HOME . "/.vim/tmp")
-
-" Test if a backup directory exists and if not, create one.
-if !isdirectory(g:vimtempfolder)
-    call mkdir(g:vimtempfolder)
-endif
-" Set the previously created directory as the backup directory.
-let &backupdir = g:vimtempfolder
-" Allow creation of backup files before overwriting a file.
-set backup
-" Set the same backup folder for the swapfile.
-let &directory = g:vimtempfolder
-" Use (or not) a swap file for the buffer.
-set noswapfile
-" Just to make sure I get a backup file.
-set writebackup
-
-" To ignore backup.
-" set nobackup
-" set nowb
-" set noswapfile
 
 " ################################
 " ##### GUI related settings #####
@@ -269,49 +186,6 @@ endif
 " ###########################
 " ##### plugin settings #####
 " ###########################
-
-" --- NERDTree ---
-
-" Not show certain files in NERDTree.
-let g:NERDTreeIgnore = ['\.pyc$', '\.class$']
-" Avoid using arrows for directories.
-let g:NERDTreeDirArrows = 1
-
-" --- UltiSnips ---
-
-" UltiSnips Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe..
-let g:UltiSnipsExpandTrigger="<C-l>"
-let g:UltiSnipsJumpForwardTrigger="<C-l>"
-let g:UltiSnipsJumpBackwardTrigger="<C-h>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" --- YouCompleteMe ---
-
-let g:ycm_error_symbol = 'EE'
-let g:EclimCompletionMethod = 'omnifunc'
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-
-" Causes YCM to avoid asking if it should load the .ycm_extra_conf.py.
-let g:ycm_confirm_extra_conf = 0
-
-" --- Python mode ---
-
-let g:pymode_rope = 0
-
-" --- Silver Searcher ---
-
-if executable('ag')  " if Silver Searcher is installed.
-    " Use ag over grep.
-    set grepprg=ag\ --nogroup\ --nocolor
-
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore.
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-    " ag is fast enough that CtrlP doesn't need to cache.
-    let g:ctrlp_use_caching = 0
-endif
 
 " --- Molokai ---
 
@@ -389,10 +263,6 @@ nnoremap <silent> <Leader>O :let cp=getpos('.')<CR>O<Esc>j:call cursor(cp[1] + 1
 nnoremap <Leader><Leader>sv :source $MYVIMRC<CR>
 " Easily edit my vimrc.
 nnoremap <Leader><Leader>ev :tabe $MYVIMRC<CR>
-nnoremap <Leader><Leader>vm :tabe ~/.vim/mappings.vim<CR>
-nnoremap <Leader><Leader>vf :tabe ~/.vim/functions.vim<CR>
-nnoremap <Leader><Leader>vs :tabe ~/.vim/settings.vim<CR>
-nnoremap <Leader><Leader>vp :tabe ~/.vim/plugins_settings.vim<CR>
 
 " Clear last search.
 nnoremap <silent> <Leader><Leader>e :let @/ = ""<CR>
