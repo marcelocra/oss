@@ -118,7 +118,7 @@ try
         colorscheme molokai
         set background=dark
     else
-        colorscheme mustang
+        colorscheme badwolf
     endif
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
@@ -238,12 +238,9 @@ nnoremap gV `[v`]
 vnoremap < <gv
 vnoremap > >gv
 
-" New line and indentation when inside braces.
-inoremap {<CR> {<CR>}<Esc>O
-
 " Easy way to change between tabs.
-nnoremap [g :tabprevious<CR>
-nnoremap ]g :tabnext<CR>
+nnoremap <a-k> :tabnext<cr>
+nnoremap <a-j> :tabprevious<cr>
 
 " ###########################
 " ##### leader mappings #####
