@@ -145,6 +145,7 @@ set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 " ################################
 " ##### GUI related settings #####
 " ################################
+" For NVim, check the ~/.config/nvim/ginit.vim.
 
 if has('win32')
     " Windows specific settings.
@@ -167,7 +168,7 @@ else
         if has('gui_running')
             " Set font according to the list (if one is not present, the next
             " one is used).
-            set guifont=Meslo\ LG\ M\ 10,Roboto\ Mono\ 10,Consolas\ 10,Monospace\ 10
+            set guifont=Meslo\ LG\ M\ 10,Roboto\ Mono\ 12,Consolas\ 10,Monospace\ 10
         endif
         " Yank to clipboard
         set clipboard=unnamedplus
