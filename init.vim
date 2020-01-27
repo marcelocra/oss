@@ -139,6 +139,8 @@ set guicursor+=i-ci:ver10-Cursor
 set guicursor+=r-cr:hor10-Cursor
 set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
+set directory=~/.config/nvim/tmp
+
 "autocmd BufNewFile,BufRead *.ejs set filetype=html
 "set term=xterm-256color
 
