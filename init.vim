@@ -208,7 +208,7 @@ augroup END
 function! LoadPluginSpecificMappings()
     if exists(':NERDTree')
         " Open current working directory in NERDTree.
-        nnoremap <silent> <Leader><Leader>d :NERDTreeCWD<CR>
+        nnoremap <silent> <leader><leader>d :NERDTreeCWD<CR>
     endif
 endfunction
 
@@ -217,18 +217,18 @@ endfunction
 " ############################
 
 " Use normal regex.
-nnoremap / /\v
-vnoremap / /\v
+nnoremap / /\v\c
+vnoremap / /\v\c
 
 " Simpler way to go to command mode from insert mode.
-inoremap jf <Esc>
-inoremap fj <Esc>
+inoremap jf <esc>
+inoremap fj <esc>
 
 " Quicker window movement.
-nnoremap <C-j> <C-w><C-j>
-nnoremap <C-k> <C-w><C-k>
-nnoremap <C-h> <C-w><C-h>
-nnoremap <C-l> <C-w><C-l>
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+nnoremap <c-h> <c-w><c-h>
+nnoremap <c-l> <c-w><c-l>
 
 " Move vertically by visual line (not jumping long lines).
 nnoremap j gj
@@ -253,32 +253,32 @@ nnoremap <a-j> :tabprevious<cr>
 let mapleader = ","
 
 " Execute last macro recorded in register 'q'.
-nnoremap <Space> @q
+nnoremap <space> @q
 
 " Shift the line below by one line (downwards).
-nnoremap <silent> <Leader>o :let cp=getpos('.')<CR>o<Esc>k:call cursor(cp[1],cp[2])<CR>
-nnoremap <silent> <Leader>O :let cp=getpos('.')<CR>O<Esc>j:call cursor(cp[1] + 1,cp[2]) <CR>
+"nnoremap <silent> <Leader>o :let cp=getpos('.')<CR>o<Esc>k:call cursor(cp[1],cp[2])<CR>
+"nnoremap <silent> <Leader>O :let cp=getpos('.')<CR>O<Esc>j:call cursor(cp[1] + 1,cp[2]) <CR>
 
 " Easily source my vimrc.
-nnoremap <Leader><Leader>sv :source $MYVIMRC<CR>
+nnoremap <leader><leader>sv :source $MYVIMRC<cr>
 " Easily edit my vimrc.
-nnoremap <Leader><Leader>ev :tabe $MYVIMRC<CR>
+nnoremap <leader><leader>ev :tabe $MYVIMRC<cr>
 
 " Clear last search.
-nnoremap <silent> <Leader><Leader>e :let @/ = ""<CR>
+nnoremap <silent> <leader><leader>cl :let @/ = ""<cr>
 
 " Save while in insert mode without leaving insert mode.
-nnoremap <Leader>w :w<CR>
-inoremap <Leader>w <Esc>:w<CR>
+nnoremap <leader>w :w<cr>
+inoremap <leader>w <esc>:w<cr>
 
 " Quit easily.
-nnoremap <Leader>q :q<CR>
-inoremap <Leader>q <Esc>:q<CR>
+nnoremap <leader>q :q<cr>
+inoremap <leader>q <esc>:q<cr>
 
 " Save and quit easily.
-inoremap <Leader>x <Esc>:x<CR>
-nnoremap <Leader>x :x<CR>
+inoremap <leader>x <esc>:x<cr>
+nnoremap <leader>x :x<cr>
 
 " Select all.
-nnoremap <Leader>a ggVG
+nnoremap <leader>a ggVG
 
