@@ -44,13 +44,13 @@ call plug#end()
 " When inserting a tab in the beggining of the line, it will be N spaces long
 " and a <BS> will go back N spaces also (where N is the chosen number).
 set smarttab
-set shiftwidth=4
+set shiftwidth=2
 
 " Use spaces instead of tabs.
 set expandtab
 
-" 1 tab == 4 spaces.
-set tabstop=4
+" 1 tab == 2 spaces.
+set tabstop=2
 
 " Automatically insert a linebreak after the selected width.
 set textwidth=0   " No line breaks for me.
