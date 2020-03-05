@@ -22,9 +22,6 @@ Plug 'tpope/vim-unimpaired'
 " Changes Vim's status bar to a fancy one.
 "Plug 'bling/vim-airline'
 
-" Provides fuzzy search for files in current directory|buffer|MRU.
-Plug 'ctrlpvim/ctrlp.vim'
-
 " Allows one to easily traverse files.
 Plug 'Lokaltog/vim-easymotion'
 
@@ -33,6 +30,9 @@ Plug 'tpope/vim-surround'
 
 " Plugin outside ~/.vim/plugged with post-update hook.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+Plug 'ycm-core/YouCompleteMe'
 
 " Initialize plugin system
 call plug#end()
@@ -198,6 +198,9 @@ if !has('gui_running')
     let g:rehash256 = 1
 endif
 
+" --- Ycm ---
+let g:ycm_filepath_blacklist = {}
+
 " --- Plugin specific mappings ---
 
 augroup plugin_initialize
@@ -244,6 +247,9 @@ vnoremap > >gv
 " Easy way to change between tabs.
 nnoremap <a-k> :tabnext<cr>
 nnoremap <a-j> :tabprevious<cr>
+
+" Ctrl+P pra mostrar os arquivos.
+nnoremap <c-p> :Files<cr>
 
 " ###########################
 " ##### leader mappings #####
