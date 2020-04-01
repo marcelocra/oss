@@ -32,7 +32,10 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-Plug 'ycm-core/YouCompleteMe'
+" JavaScript stuff.
+Plug 'dense-analysis/ale'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'ternjs/tern_for_vim', { 'do': 'yarn install' }
 
 " Initialize plugin system
 call plug#end()
@@ -201,19 +204,26 @@ endif
 " --- Ycm ---
 let g:ycm_filepath_blacklist = {}
 
-" --- Plugin specific mappings ---
+" --- Ale Javascript ---
+let g:ale_linter_aliases = {'jsx': ['css', 'javascript']}
+let g:ale_linters = {'jsx': ['eslint', 'prettier']}
+let g:ale_fixers = { 'javascript': ['eslint', 'prettier'] }
+let g:ale_fix_on_save = 1
 
-augroup plugin_initialize
-    autocmd!
-    autocmd VimEnter * call LoadPluginSpecificMappings()
-augroup END
+" --- Plugin specific mappings ---
 
 function! LoadPluginSpecificMappings()
     if exists(':NERDTree')
         " Open current working directory in NERDTree.
         nnoremap <silent> <leader><leader>d :NERDTreeCWD<CR>
     endif
+    nnoremap <a-f> :Ag<cr>
 endfunction
+
+augroup plugin_initialize
+    autocmd!
+    autocmd VimEnter * call LoadPluginSpecificMappings()
+augroup END
 
 " ############################
 " ##### general mappings #####
