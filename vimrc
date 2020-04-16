@@ -2,7 +2,7 @@
 " Vim Plug.
 " ---------
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 " Colorschemes.
 Plug 'altercation/vim-colors-solarized'
@@ -142,7 +142,10 @@ set guicursor+=i-ci:ver10-Cursor
 set guicursor+=r-cr:hor10-Cursor
 set guicursor+=sm:block-Cursor-blinkwait175-blinkoff150-blinkon175
 
-set directory=~/.config/nvim/tmp
+if empty(glob('~/.vim/tmp'))
+    silent !mkdir -p ~/.vim/tmp
+endif
+set directory=~/.vim/tmp
 
 "autocmd BufNewFile,BufRead *.ejs set filetype=html
 "set term=xterm-256color
@@ -150,7 +153,7 @@ set directory=~/.config/nvim/tmp
 " ################################
 " ##### GUI related settings #####
 " ################################
-" For NVim, check the ~/.config/nvim/ginit.vim.
+" For NVim, check the ginit.vim.
 
 if has('win32')
     " Windows specific settings.
