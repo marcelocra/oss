@@ -1,6 +1,11 @@
 " ---------
 " Vim Plug.
 " ---------
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin('~/.vim/plugged')
 
@@ -176,7 +181,7 @@ else
         if has('gui_running')
             " Set font according to the list (if one is not present, the next
             " one is used).
-            set guifont=Meslo\ LG\ M\ 10,Roboto\ Mono\ 12,Consolas\ 10,Monospace\ 10
+            set guifont=JetBrains\ Mono\ 14
         endif
         " Yank to clipboard
         set clipboard=unnamedplus
