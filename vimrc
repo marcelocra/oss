@@ -25,7 +25,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 
 " Changes Vim's status bar to a fancy one.
-"Plug 'bling/vim-airline'
+Plug 'bling/vim-airline'
 
 " Allows one to easily traverse files.
 Plug 'Lokaltog/vim-easymotion'
@@ -124,7 +124,6 @@ set nofoldenable
 try
     if has('gui_running')
         colorscheme molokai
-        set background=dark
     else
         colorscheme badwolf
     endif
