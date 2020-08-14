@@ -39,6 +39,8 @@ Plug 'junegunn/fzf.vim'
 
 " JavaScript stuff.
 Plug 'dense-analysis/ale'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'ternjs/tern_for_vim', { 'do': 'yarn install' }
 
@@ -265,6 +267,8 @@ vnoremap > >gv
 " Easy way to change between tabs.
 nnoremap <a-k> :tabnext<cr>
 nnoremap <a-j> :tabprevious<cr>
+nnoremap g] :tabnext<cr>
+nnoremap g[ :tabprevious<cr>
 
 " Ctrl+P pra mostrar os arquivos.
 nnoremap <c-p> :Files<cr>
