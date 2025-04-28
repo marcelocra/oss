@@ -1,0 +1,6 @@
+[submodule "dotfiles"]
+	path = dotfiles
+	url = https://github.com/marcelocra/dotfiles
+[submodule "dev.marcelocra"]
+	path = dev.marcelocra
+	url = https://github.com/marcelocra/site
