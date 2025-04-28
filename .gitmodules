@@ -4,3 +4,6 @@
 [submodule "dev.marcelocra"]
 	path = dev.marcelocra
 	url = https://github.com/marcelocra/site
+[submodule "third_party/tinycolor2"]
+	path = third_party/tinycolor2
+	url = https://github.com/marcelocra/TinyColor
