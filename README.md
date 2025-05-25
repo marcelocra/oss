@@ -1,4 +1,6 @@
-# oss - All my open-source code
+# oss
+
+> _All my open-source code._
 
 - https://github.com/marcelocra/site
   - 🌐 A site and blog that I use to learn different ways of making sites and blogs. I'm using Astro on Deno Deploy since apr24
